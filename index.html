@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Naiflick — Kenya's Dating App | Find Real Love Near You</title>
+<meta name="description" content="Naiflick is Kenya's most trusted dating app. Meet verified singles in Nairobi, Mombasa, Kisumu, Nakuru & beyond. Join free today.">
+<meta name="theme-color" content="#ff2d78">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --ink:#160b22;
+  --ink-2:#3b2f4d;
+  --muted:#6f6785;
+  --paper:#fffaf8;
+  --card:#ffffff;
+  --line:#f2e7ef;
+
+  --pink:#ff2d78;
+  --rose:#ff5c8a;
+  --orange:#ff8a3d;
+  --amber:#ffc23d;
+  --purple:#7b2ff7;
+  --violet:#a855f7;
+  --teal:#00c9a7;
+  --blue:#3b82f6;
+
+  --grad-hot:linear-gradient(120deg,#ff2d78 0%,#ff8a3d 55%,#ffc23d 100%);
+  --grad-cool:linear-gradient(120deg,#7b2ff7 0%,#ff2d78 100%);
+  --grad-fresh:linear-gradient(120deg,#00c9a7 0%,#3b82f6 100%);
+  --grad-sun:linear-gradient(120deg,#ff8a3d 0%,#ffc23d 100%);
+
+  --shadow-sm:0 6px 18px -10px rgba(20,10,31,.35);
+  --shadow-md:0 22px 50px -28px rgba(20,10,31,.5);
+  --shadow-lg:0 44px 90px -48px rgba(123,47,247,.6);
+
+  --r:22px;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+
+/* ============ BASE ============ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+  background:var(--paper);color:var(--ink-2);
+  line-height:1.65;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,h5{font-family:'Outfit',sans-serif;color:var(--ink);line-height:1.12;letter-spacing:-.025em;font-weight:800}
+p{color:var(--muted)}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+section{scroll-margin-top:100px}
+.container{width:min(1180px,92%);margin-inline:auto}
+.grad-text{background:var(--grad-cool);-webkit-background-clip:text;background-clip:text;color:transparent}
+.grad-text.hot{background:var(--grad-hot);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  padding:1rem 1.9rem;border-radius:999px;
+  font-weight:800;font-size:.97rem;letter-spacing:-.01em;
+  position:relative;overflow:hidden;isolation:isolate;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),color .3s;
+  white-space:nowrap;
+}
+.btn:active{transform:scale(.97)}
+.btn-hot{background:var(--grad-hot);background-size:180% 180%;color:#fff;box-shadow:0 14px 34px -14px rgba(255,45,120,.85);animation:gradShift 7s ease infinite}
+.btn-hot:hover{transform:translateY(-3px);box-shadow:0 24px 50px -16px rgba(255,45,120,.9)}
+.btn-cool{background:var(--grad-cool);color:#fff;box-shadow:0 14px 34px -14px rgba(123,47,247,.85)}
+.btn-cool:hover{transform:translateY(-3px);box-shadow:0 24px 50px -16px rgba(123,47,247,.9)}
+.btn-ghost{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px var(--line),0 10px 26px -18px rgba(20,10,31,.5)}
+.btn-ghost:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 2px #ffc9dd,0 20px 40px -20px rgba(255,45,120,.5)}
+.btn-light{background:#fff;color:var(--ink)}
+.btn-light:hover{transform:translateY(-3px);box-shadow:0 22px 45px -22px rgba(0,0,0,.5)}
+.btn-outline-light{color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.35)}
+.btn-outline-light:hover{background:#fff;color:var(--ink);transform:translateY(-3px)}
+.btn::after{
+  content:'';position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);
+  transform:translateX(-130%);transition:transform .8s var(--ease);
+}
+.btn:hover::after{transform:translateX(130%)}
+.btn-sm{padding:.72rem 1.35rem;font-size:.88rem}
+
+/* ============ HEADER ============ */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100}
+.topbar{
+  background:linear-gradient(90deg,#7b2ff7,#ff2d78 45%,#ff8a3d 100%);
+  background-size:200% 100%;animation:gradShift 8s ease infinite;
+  color:#fff;font-size:.79rem;font-weight:600;text-align:center;
+  padding:9px 18px;letter-spacing:.01em;
+  max-height:80px;overflow:hidden;
+  transition:max-height .45s var(--ease),padding .45s var(--ease),opacity .3s;
+}
+.topbar b{font-weight:800}
+.site-header.scrolled .topbar{max-height:0;padding-block:0;opacity:0}
+
+.nav{transition:background .4s,box-shadow .4s,padding .4s;padding:14px 0}
+.site-header.scrolled .nav{background:#fff;box-shadow:0 10px 34px -24px rgba(20,10,31,.6);padding:9px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative}
+
+.logo{display:flex;align-items:center;gap:11px;font-family:'Outfit';font-weight:900;font-size:1.35rem;letter-spacing:-.04em;color:var(--ink)}
+.logo-mark{
+  width:40px;height:40px;border-radius:13px;display:grid;place-items:center;
+  background:var(--grad-hot);background-size:200% 200%;animation:gradShift 6s ease infinite;
+  box-shadow:0 12px 26px -12px rgba(255,45,120,.9);flex:0 0 auto;
+}
+.logo-mark svg{width:22px;height:22px;fill:#fff}
+.logo span{background:var(--grad-cool);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{
+  padding:.6rem 1rem;border-radius:999px;font-weight:600;font-size:.94rem;color:var(--ink-2);
+  transition:color .25s,background .25s;position:relative;
+}
+.nav-links a:hover{color:var(--pink);background:#fff0f5}
+.nav-cta{display:flex;align-items:center;gap:12px}
+.burger{display:none;width:46px;height:46px;border-radius:14px;background:#fff;box-shadow:0 8px 22px -14px rgba(20,10,31,.6);position:relative}
+.burger i{position:absolute;left:13px;right:13px;height:2.5px;border-radius:2px;background:var(--ink);transition:.35s var(--ease)}
+.burger i:nth-child(1){top:16px}
+.burger i:nth-child(2){top:22px}
+.burger i:nth-child(3){top:28px}
+.burger.open i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger.open i:nth-child(2){opacity:0;transform:scaleX(.3)}
+.burger.open i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;padding:clamp(130px,17vw,190px) 0 clamp(70px,9vw,110px);
+  overflow:hidden;background:linear-gradient(180deg,#fff6f2 0%,#fffaf8 55%,#fffaf8 100%);
+}
+.hero::before{
+  content:'';position:absolute;inset:-10% -5% auto -5%;height:130%;
+  background:
+    radial-gradient(620px 420px at 8% 6%,rgba(255,45,120,.20),transparent 62%),
+    radial-gradient(680px 520px at 92% 14%,rgba(123,47,247,.18),transparent 62%),
+    radial-gradient(700px 500px at 55% 105%,rgba(0,201,167,.15),transparent 62%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(rgba(123,47,247,.10) 1px,transparent 1px);
+  background-size:30px 30px;
+  mask-image:radial-gradient(circle at 50% 30%,#000,transparent 78%);
+  -webkit-mask-image:radial-gradient(circle at 50% 30%,#000,transparent 78%);
+}
+.hero .container{position:relative;z-index:2}
+.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:clamp(30px,5vw,64px);align-items:center}
+
+.badge{
+  display:inline-flex;align-items:center;gap:9px;
+  background:#fff;padding:.5rem 1.05rem;border-radius:999px;
+  font-size:.82rem;font-weight:700;color:var(--ink);
+  box-shadow:0 12px 30px -18px rgba(20,10,31,.6),inset 0 0 0 1.5px #ffe0ec;
+}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:#00c9a7;box-shadow:0 0 0 4px rgba(0,201,167,.2);animation:pulse 2s infinite}
+
+h1.hero-title{font-size:clamp(2.5rem,6vw,4.35rem);margin:22px 0 18px;font-weight:900}
+h1.hero-title .line{display:block}
+.hero-sub{font-size:clamp(1rem,1.6vw,1.14rem);max-width:540px;margin-bottom:32px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:36px}
+
+.social-proof{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.avatars{display:flex}
+.avatars .av{
+  width:44px;height:44px;border-radius:50%;margin-left:-13px;
+  border:3px solid #fff;overflow:hidden;position:relative;background:var(--grad-cool);
+  display:grid;place-items:center;color:#fff;font-weight:800;font-size:.85rem;
+  box-shadow:0 8px 18px -10px rgba(20,10,31,.6);
+}
+.avatars .av:first-child{margin-left:0}
+.avatars .av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.proof-text{font-size:.85rem;font-weight:600;color:var(--ink-2);line-height:1.4}
+.proof-text b{color:var(--ink);font-weight:800}
+
+/* ---- phone mockup ---- */
+.phone-wrap{position:relative;display:grid;place-items:center;justify-self:center}
+.phone{
+  width:min(320px,78vw);aspect-ratio:9/18.2;
+  background:#1b0f2b;border-radius:46px;padding:11px;
+  box-shadow:0 50px 90px -40px rgba(123,47,247,.75),0 0 0 2px rgba(255,255,255,.07) inset;
+  position:relative;animation:phoneFloat 7s ease-in-out infinite;
+}
+.phone::before{
+  content:'';position:absolute;top:11px;left:50%;transform:translateX(-50%);
+  width:100px;height:22px;background:#1b0f2b;border-radius:0 0 16px 16px;z-index:5;
+}
+.phone-screen{
+  position:relative;height:100%;border-radius:36px;overflow:hidden;
+  background:linear-gradient(180deg,#ffffff 0%,#fff5f1 100%);
+  display:flex;flex-direction:column;padding:16px 14px 14px;
+}
+.phone-top{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 10px}
+.mini-logo{font-family:'Outfit';font-weight:900;font-size:1rem;letter-spacing:-.04em;background:var(--grad-cool);-webkit-background-clip:text;background-clip:text;color:transparent}
+.live-pill{font-size:.68rem;font-weight:800;color:#00a98d;background:#e6fbf6;padding:.25rem .6rem;border-radius:999px}
+
+.deck{position:relative;flex:1;margin:2px 0 12px}
+.pcard{
+  position:absolute;inset:0;border-radius:24px;overflow:hidden;background:#f4eef3;
+  box-shadow:0 22px 38px -22px rgba(20,10,31,.65);
+  transition:transform .6s var(--ease),opacity .5s var(--ease);
+  will-change:transform;
+}
+.pcard.pos-0{transform:translateY(0) scale(1);z-index:3}
+.pcard.pos-1{transform:translateY(15px) scale(.945);z-index:2}
+.pcard.pos-2{transform:translateY(30px) scale(.89);z-index:1}
+.pcard.fly{transform:translate(135%,-40px) rotate(22deg);opacity:0;z-index:4}
+
+.pc-media{position:absolute;inset:0}
+.pc-initial{position:absolute;inset:0;display:grid;place-items:center;font-family:'Outfit';font-weight:900;font-size:5.5rem;color:rgba(255,255,255,.85)}
+.pc-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pc-info{
+  position:absolute;left:0;right:0;bottom:0;padding:16px 14px 14px;color:#fff;
+  background:linear-gradient(to top,rgba(12,4,22,.94) 0%,rgba(12,4,22,.6) 52%,transparent 100%);
+}
+.pc-match{display:inline-block;font-size:.66rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:var(--grad-hot);padding:.22rem .6rem;border-radius:999px;margin-bottom:8px}
+.pc-info h4{color:#fff;font-size:1.18rem;font-weight:800}
+.pc-info p{color:rgba(255,255,255,.82);font-size:.78rem;margin-top:2px}
+.pc-tags{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}
+.pc-tags span{font-size:.66rem;font-weight:700;padding:.22rem .58rem;border-radius:999px;background:rgba(255,255,255,.18);box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+
+.phone-actions{display:flex;justify-content:center;gap:14px;padding-bottom:4px}
+.act{
+  width:50px;height:50px;border-radius:50%;display:grid;place-items:center;font-size:1.15rem;
+  background:#fff;box-shadow:0 10px 24px -12px rgba(20,10,31,.55);
+  transition:transform .3s var(--ease),box-shadow .3s;
+}
+.act:hover{transform:translateY(-4px) scale(1.06)}
+.act-no{color:#ff5b6e;box-shadow:0 10px 24px -12px rgba(255,91,110,.8)}
+.act-star{color:#ffb020;box-shadow:0 10px 24px -12px rgba(255,176,32,.8);width:42px;height:42px;font-size:.95rem;align-self:center}
+.act-yes{color:#fff;background:var(--grad-hot);box-shadow:0 12px 26px -10px rgba(255,45,120,.9)}
+
+.float-chip{
+  position:absolute;background:#fff;border-radius:999px;
+  padding:.62rem 1.05rem;font-size:.82rem;font-weight:800;color:var(--ink);
+  display:flex;align-items:center;gap:8px;
+  box-shadow:0 22px 44px -20px rgba(20,10,31,.6);
+  animation:floaty 5s ease-in-out infinite;
+}
+.chip-1{top:12%;left:-6%;border-left:4px solid #ff2d78}
+.chip-2{bottom:13%;right:-8%;border-left:4px solid #00c9a7;animation-delay:1.4s}
+.chip-3{top:50%;right:-11%;border-left:4px solid #7b2ff7;animation-delay:.7s;font-size:.75rem;padding:.5rem .9rem}
+
+/* ============ STATS ============ */
+.stats{padding:clamp(30px,5vw,56px) 0}
+.stats-inner{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--line);border-radius:28px;overflow:hidden;
+  box-shadow:var(--shadow-md);
+}
+.stat{background:#fff;padding:clamp(22px,3.4vw,38px) 18px;text-align:center;transition:background .4s}
+.stat:hover{background:#fff8fb}
+.stat .num{font-family:'Outfit';font-size:clamp(1.9rem,4.2vw,2.9rem);font-weight:900;letter-spacing:-.04em;line-height:1}
+.stat .num.g1{background:var(--grad-hot);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .num.g2{background:var(--grad-cool);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .num.g3{background:var(--grad-fresh);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .num.g4{background:var(--grad-sun);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .lbl{font-size:.82rem;font-weight:700;color:var(--muted);margin-top:8px;text-transform:uppercase;letter-spacing:.07em}
+
+/* ============ SECTION HEAD ============ */
+.section{padding:clamp(66px,9vw,120px) 0}
+.section-head{max-width:680px;margin:0 auto clamp(40px,5vw,66px);text-align:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.76rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  background:#fff;padding:.48rem 1.05rem;border-radius:999px;margin-bottom:20px;
+  box-shadow:inset 0 0 0 1.6px #ffe0ec,0 10px 26px -20px rgba(20,10,31,.6);
+}
+.eyebrow span{background:var(--grad-cool);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--grad-hot)}
+.section-head h2{font-size:clamp(1.95rem,4.4vw,3.05rem);margin-bottom:16px}
+.section-head h2 em{font-style:normal;background:var(--grad-hot);background-size:200% 200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gradShift 7s ease infinite}
+.section-head p{font-size:1.03rem;max-width:600px;margin-inline:auto}
+
+/* ============ STEPS ============ */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.6vw,30px);position:relative}
+.step{
+  background:#fff;border-radius:var(--r);padding:clamp(26px,3.2vw,38px);
+  box-shadow:var(--shadow-md);position:relative;overflow:hidden;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease);
+}
+.step::after{content:'';position:absolute;left:0;top:0;height:5px;width:100%;background:var(--g);transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease)}
+.step:hover{transform:translateY(-9px);box-shadow:0 40px 70px -38px rgba(20,10,31,.55)}
+.step:hover::after{transform:scaleX(1)}
+.step-num{
+  width:62px;height:62px;border-radius:20px;display:grid;place-items:center;
+  font-family:'Outfit';font-weight:900;font-size:1.3rem;color:#fff;margin-bottom:22px;
+  background:var(--g);box-shadow:0 18px 34px -18px var(--gs);
+}
+.step h3{font-size:1.28rem;margin-bottom:10px}
+.step p{font-size:.94rem}
+
+/* ============ TABS ============ */
+.tabs-wrap{display:flex;justify-content:center;margin-bottom:clamp(28px,4vw,48px)}
+.tabs{
+  display:flex;gap:6px;padding:7px;border-radius:999px;background:#fff;
+  box-shadow:var(--shadow-md);flex-wrap:wrap;justify-content:center;
+}
+.tab{
+  position:relative;isolation:isolate;padding:.78rem 1.5rem;border-radius:999px;
+  font-weight:800;font-size:.9rem;color:var(--ink-2);transition:color .35s;
+}
+.tab::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;z-index:-1;
+  background:linear-gradient(120deg,var(--c1),var(--c2));
+  opacity:0;transform:scale(.86);transition:opacity .35s,transform .4s var(--ease);
+  box-shadow:0 14px 28px -14px var(--c2);
+}
+.tab[aria-selected="true"]{color:#fff}
+.tab[aria-selected="true"]::before{opacity:1;transform:scale(1)}
+.tab:hover{color:var(--c2)}
+.tab[aria-selected="true"]:hover{color:#fff}
+
+.panels{position:relative}
+.panel{display:none}
+.panel.active{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.2vw,24px);animation:fadeUp .6s var(--ease) both}
+.panel.active .match-card{animation:fadeUp .65s var(--ease) both}
+.panel.active .match-card:nth-child(1){animation-delay:.04s}
+.panel.active .match-card:nth-child(2){animation-delay:.12s}
+.panel.active .match-card:nth-child(3){animation-delay:.20s}
+.panel.active .match-card:nth-child(4){animation-delay:.28s}
+
+.match-card{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-md);transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.match-card:hover{transform:translateY(-10px);box-shadow:0 40px 70px -32px rgba(20,10,31,.5)}
+.mc-media{position:relative;aspect-ratio:1/1.08;overflow:hidden;background:linear-gradient(140deg,var(--g1),var(--g2))}
+.mc-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.match-card:hover .mc-media img{transform:scale(1.09)}
+.mc-initial{position:absolute;inset:0;display:grid;place-items:center;font-family:'Outfit';font-weight:900;font-size:4rem;color:rgba(255,255,255,.85)}
+.mc-badge{
+  position:absolute;top:12px;left:12px;font-size:.68rem;font-weight:800;color:#fff;
+  background:linear-gradient(120deg,var(--g1),var(--g2));padding:.3rem .68rem;border-radius:999px;
+  box-shadow:0 10px 22px -12px rgba(0,0,0,.7);letter-spacing:.03em;
+}
+.mc-online{position:absolute;top:14px;right:12px;width:11px;height:11px;border-radius:50%;background:#00e6a8;box-shadow:0 0 0 3px rgba(0,230,168,.35),0 0 12px rgba(0,230,168,.9)}
+.mc-body{padding:16px 16px 18px}
+.mc-body h4{font-size:1.05rem;font-weight:800}
+.mc-body p{font-size:.81rem;margin-top:3px;display:flex;align-items:center;gap:5px}
+.mc-tags{display:flex;gap:6px;margin-top:11px;flex-wrap:wrap}
+.mc-tags span{font-size:.68rem;font-weight:700;padding:.25rem .62rem;border-radius:999px;background:#fff2f7;color:#d81b63}
+.mc-tags span:nth-child(2){background:#f0ebff;color:#6d28d9}
+
+/* ============ FEATURES ============ */
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.4vw,26px)}
+.feature{
+  background:#fff;border-radius:var(--r);padding:clamp(24px,2.9vw,32px);
+  box-shadow:var(--shadow-sm);position:relative;overflow:hidden;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease);
+}
+.feature::before{
+  content:'';position:absolute;inset:auto -30% -60% auto;width:200px;height:200px;border-radius:50%;
+  background:var(--g);opacity:.07;transition:transform .7s var(--ease);
+}
+.feature:hover{transform:translateY(-8px);box-shadow:0 34px 60px -34px rgba(20,10,31,.5)}
+.feature:hover::before{transform:scale(1.6)}
+.f-icon{
+  width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:1.5rem;
+  background:var(--g);box-shadow:0 16px 30px -16px var(--gs);margin-bottom:20px;
+}
+.feature h3{font-size:1.12rem;margin-bottom:9px}
+.feature p{font-size:.92rem}
+
+/* ============ STORIES ============ */
+.stories{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.6vw,28px)}
+.story{
+  background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-md);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease);display:flex;flex-direction:column;
+}
+.story:hover{transform:translateY(-9px);box-shadow:0 40px 72px -34px rgba(20,10,31,.5)}
+.story-img{position:relative;aspect-ratio:16/11;overflow:hidden;background:linear-gradient(140deg,var(--g1),var(--g2))}
+.story-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.story:hover .story-img img{transform:scale(1.07)}
+.story-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(12,4,22,.55),transparent 62%)}
+.story-body{padding:22px;flex:1;display:flex;flex-direction:column}
+.story-stars{color:#ffb020;letter-spacing:2px;font-size:.9rem;margin-bottom:12px}
+.story-body blockquote{font-size:.95rem;color:var(--ink-2);font-weight:500;flex:1;font-style:italic}
+.story-meta{display:flex;align-items:center;gap:11px;margin-top:18px;padding-top:16px;border-top:1.5px solid var(--line)}
+.story-meta .av{width:42px;height:42px;border-radius:50%;overflow:hidden;position:relative;background:var(--grad-cool);display:grid;place-items:center;color:#fff;font-weight:800;font-size:.85rem;flex:0 0 auto}
+.story-meta .av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.story-meta h5{font-size:.92rem;font-weight:800;font-family:'Outfit'}
+.story-meta small{color:var(--muted);font-size:.78rem;display:block}
+
+/* ============ CTA BAND ============ */
+.cta-band{
+  position:relative;overflow:hidden;border-radius:36px;
+  background:linear-gradient(125deg,#2b0f45 0%,#5a1350 45%,#8a1c4d 75%,#c22a4a 100%);
+  padding:clamp(46px,7vw,86px) clamp(24px,5vw,72px);
+  text-align:center;box-shadow:0 50px 90px -46px rgba(123,47,247,.9);
+}
+.cta-band::before{
+  content:'';position:absolute;inset:0;opacity:.35;
+  background:
+    radial-gradient(420px 300px at 12% 18%,rgba(255,45,120,.85),transparent 65%),
+    radial-gradient(460px 320px at 88% 82%,rgba(0,201,167,.7),transparent 65%),
+    radial-gradient(380px 260px at 70% 12%,rgba(255,194,61,.6),transparent 65%);
+}
+.cta-band::after{
+  content:'';position:absolute;inset:0;opacity:.18;
+  background-image:radial-gradient(#fff 1.2px,transparent 1.2px);
+  background-size:26px 26px;
+  mask-image:radial-gradient(circle at 50% 50%,#000,transparent 80%);
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000,transparent 80%);
+}
+.cta-band .inner{position:relative;z-index:2;max-width:660px;margin-inline:auto}
+.cta-band h2{color:#fff;font-size:clamp(1.9rem,4.6vw,3rem);margin-bottom:16px}
+.cta-band p{color:rgba(255,255,255,.82);font-size:1.02rem;margin-bottom:32px}
+.cta-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.store-btn{display:inline-flex;align-items:center;gap:11px;background:#fff;color:var(--ink);padding:.85rem 1.5rem;border-radius:16px;font-weight:700;transition:transform .35s var(--ease),box-shadow .35s}
+.store-btn:hover{transform:translateY(-4px);box-shadow:0 24px 44px -22px rgba(0,0,0,.7)}
+.store-btn svg{width:22px;height:22px;flex:0 0 auto}
+.store-btn small{display:block;font-size:.62rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);line-height:1.2}
+.store-btn b{font-size:.95rem;font-weight:800;line-height:1.2}
+
+/* ============ FAQ ============ */
+.faq{max-width:800px;margin-inline:auto;display:flex;flex-direction:column;gap:12px}
+.faq-item{
+  background:#fff;border-radius:18px;overflow:hidden;
+  box-shadow:var(--shadow-sm);transition:box-shadow .35s;
+}
+.faq-item[open]{box-shadow:0 26px 50px -30px rgba(123,47,247,.55)}
+.faq-item summary{
+  list-style:none;cursor:pointer;padding:20px 58px 20px 22px;
+  font-family:'Outfit';font-weight:700;font-size:1.02rem;color:var(--ink);
+  position:relative;transition:color .25s;
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{color:var(--pink)}
+.faq-item summary::after{
+  content:'';position:absolute;right:20px;top:50%;
+  width:26px;height:26px;margin-top:-13px;border-radius:50%;
+  background:var(--grad-hot);transition:transform .4s var(--ease);
+  background-image:linear-gradient(120deg,#ff2d78,#ff8a3d),url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round'><line x1='12' y1='5' x2='12' y2='19'/><line x1='5' y1='12' x2='19' y2='12'/></svg>");
+  background-size:cover,14px;background-position:center;background-repeat:no-repeat;
+}
+.faq-item[open] summary::after{transform:rotate(135deg)}
+.faq-body{padding:0 22px 22px;font-size:.94rem;color:var(--muted);animation:fadeUp .4s var(--ease) both}
+
+/* ============ FOOTER ============ */
+footer{
+  margin-top:clamp(70px,9vw,120px);
+  background:linear-gradient(180deg,#170b26 0%,#0e0618 100%);
+  color:rgba(255,255,255,.72);padding:clamp(52px,7vw,84px) 0 30px;
+  position:relative;overflow:hidden;
+}
+footer::before{
+  content:'';position:absolute;top:-160px;left:50%;transform:translateX(-50%);
+  width:900px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,45,120,.28),transparent 66%);
+}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:clamp(26px,4vw,50px);position:relative;z-index:2}
+.footer-brand p{color:rgba(255,255,255,.6);font-size:.92rem;margin:18px 0 22px;max-width:320px}
+footer .logo{color:#fff}
+.socials{display:flex;gap:10px}
+.socials a{
+  width:42px;height:42px;border-radius:13px;display:grid;place-items:center;
+  background:rgba(255,255,255,.07);transition:.35s var(--ease);
+}
+.socials a:hover{background:var(--grad-hot);transform:translateY(-4px)}
+.socials svg{width:19px;height:19px;fill:#fff}
+.f-col h5{color:#fff;font-size:.83rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;margin-bottom:20px;font-family:'Outfit'}
+.f-col a{display:block;font-size:.92rem;padding:6px 0;color:rgba(255,255,255,.62);transition:color .25s,transform .25s}
+.f-col a:hover{color:#ff8a3d;transform:translateX(4px)}
+.footer-bottom{
+  margin-top:clamp(38px,5vw,60px);padding-top:26px;
+  border-top:1px solid rgba(255,255,255,.09);
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  font-size:.85rem;color:rgba(255,255,255,.5);position:relative;z-index:2;
+}
+.footer-bottom .made{display:flex;align-items:center;gap:7px}
+
+/* ============ FLOATING HEARTS ============ */
+.hearts{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.hearts span{
+  position:absolute;bottom:-60px;font-size:20px;opacity:0;
+  animation:rise linear infinite;
+}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* ============ KEYFRAMES ============ */
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.35);opacity:.65}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes phoneFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-16px) rotate(-1.2deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes rise{
+  0%{opacity:0;transform:translateY(0) scale(.6) rotate(0)}
+  12%{opacity:.75}
+  85%{opacity:.5}
+  100%{opacity:0;transform:translateY(-115vh) scale(1.1) rotate(320deg)}
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero-sub{margin-inline:auto}
+  .hero-actions,.social-proof{justify-content:center}
+  .phone-wrap{margin-top:54px}
+  .chip-1{left:-2%}
+  .chip-2{right:-2%}
+  .chip-3{display:none}
+  .features,.stories{grid-template-columns:repeat(2,1fr)}
+  .panel.active{grid-template-columns:repeat(3,1fr)}
+  .panel.active .match-card:nth-child(4){display:none}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+
+@media (max-width:860px){
+  .burger{display:block}
+  .nav-cta .btn{display:none}
+  .nav-links{
+    position:absolute;top:calc(100% + 12px);left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:4px;
+    background:#fff;border-radius:22px;padding:14px;
+    box-shadow:0 34px 70px -30px rgba(20,10,31,.55);
+    max-height:0;opacity:0;visibility:hidden;overflow:hidden;
+    transition:max-height .5s var(--ease),opacity .35s,visibility .35s,padding .35s;
+  }
+  .nav-links.open{max-height:460px;opacity:1;visibility:visible;padding:14px}
+  .nav-links a{padding:.85rem 1.1rem;border-radius:14px;font-size:1rem}
+  .nav-links a:hover{background:#fff4f9}
+  .nav-links .mobile-cta{display:flex;margin-top:6px}
+  .nav-links .mobile-cta .btn{width:100%}
+  .steps{grid-template-columns:1fr}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .faq-item summary{font-size:.96rem;padding:17px 52px 17px 18px}
+}
+
+@media (max-width:680px){
+  .features,.stories{grid-template-columns:1fr}
+  .panel.active{grid-template-columns:repeat(2,1fr)}
+  .panel.active .match-card:nth-child(3){display:none}
+  .tabs{gap:4px;padding:6px}
+  .tab{padding:.68rem 1.05rem;font-size:.84rem}
+  .footer-grid{grid-template-columns:1fr;gap:34px}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .cta-band{border-radius:26px}
+  .float-chip{font-size:.76rem;padding:.5rem .85rem}
+  .chip-1{left:-4%}
+  .chip-2{right:-4%}
+  h1.hero-title{font-size:clamp(2.2rem,9vw,2.9rem)}
+}
+
+@media (max-width:400px){
+  .panel.active{grid-template-columns:1fr}
+  .panel.active .match-card:nth-child(2){display:none}
+  .btn{padding:.9rem 1.45rem;font-size:.9rem}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header" id="header">
+  <div class="topbar">
+    💘 <b>Now live:</b> Naiflick Nights singles mixers this month in Nairobi, Mombasa &amp; Kisumu — open to all members.
+  </div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="logo">
+        <span class="logo-mark">
+          <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.9-9.6-9.2C.6 8.3 2.5 4.6 6.1 4.1c2.2-.3 4.1.8 5.9 3 1.8-2.2 3.7-3.3 5.9-3 3.6.5 5.5 4.2 3.7 7.7C19.5 16.1 12 21 12 21z"/></svg>
+        </span>
+        <span>Naiflick</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#how">How it works</a>
+        <a href="#matches">Matches</a>
+        <a href="#why">Why Naiflick</a>
+        <a href="#stories">Stories</a>
+        <a href="#faq">FAQs</a>
+        <div class="mobile-cta" style="display:none">
+          <a href="#join" class="btn btn-hot">Join Free</a>
+        </div>
+      </div>
+
+      <div class="nav-cta">
+        <a href="#join" class="btn btn-hot btn-sm">Join Free</a>
+        <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+          <i></i><i></i><i></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="hero-grid">
+
+      <!-- LEFT -->
+      <div class="hero-copy">
+        <span class="badge reveal"><span class="dot"></span> Over 250,000 Kenyans already on Naiflick</span>
+
+        <h1 class="hero-title reveal" style="transition-delay:.08s">
+          <span class="line">Pata mapenzi ya</span>
+          <span class="line grad-text">kwaida.</span>
+          <span class="line">Find real love in Kenya.</span>
+        </h1>
+
+        <p class="hero-sub reveal" style="transition-delay:.16s">
+          Naiflick connects you with verified singles from Nairobi to Mombasa, Kisumu to Nakuru.
+          No endless chatting, no fake profiles — just genuine people looking for the same thing you are.
+        </p>
+
+        <div class="hero-actions reveal" style="transition-delay:.24s">
+          <a href="#join" class="btn btn-hot">
+            Create Free Profile
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#how" class="btn btn-ghost">See how it works</a>
+        </div>
+
+        <div class="social-proof reveal" style="transition-delay:.32s">
+          <div class="avatars">
+            <span class="av">W<img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=120&q=70" alt="" onerror="this.remove()"></span>
+            <span class="av">J<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=70" alt="" onerror="this.remove()"></span>
+            <span class="av">A<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=70" alt="" onerror="this.remove()"></span>
+            <span class="av">K<img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=70" alt="" onerror="this.remove()"></span>
+            <span class="av" style="background:linear-gradient(120deg,#ff2d78,#ff8a3d)">+</span>
+          </div>
+          <div class="proof-text">
+            <b>4.9 ★ rating</b> from 12,400+ reviews<br>
+            Trusted across all 47 counties
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT / PHONE -->
+      <div class="phone-wrap reveal" style="transition-delay:.2s">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="phone-top">
+              <span class="mini-logo">naiflick</span>
+              <span class="live-pill">● 1,284 online</span>
+            </div>
+
+            <div class="deck" id="deck"></div>
+
+            <div class="phone-actions">
+              <button class="act act-no" aria-label="Pass">✕</button>
+              <button class="act act-star" aria-label="Super like">★</button>
+              <button class="act act-yes" aria-label="Like">♥</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="float-chip chip-1">❤️ 3 new likes</div>
+        <div class="float-chip chip-2">✅ Verified profile</div>
+        <div class="float-chip chip-3">📍 2.4km away</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-inner reveal">
+      <div class="stat">
+        <div class="num g1" data-count="250" data-suffix="K+">0</div>
+        <div class="lbl">Active Members</div>
+      </div>
+      <div class="stat">
+        <div class="num g2" data-count="18600" data-suffix="+">0</div>
+        <div class="lbl">Matches Made</div>
+      </div>
+      <div class="stat">
+        <div class="num g3" data-count="47" data-suffix="">0</div>
+        <div class="lbl">Counties Covered</div>
+      </div>
+      <div class="stat">
+        <div class="num g4" data-count="98" data-suffix="%">0</div>
+        <div class="lbl">Verified Profiles</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="section" id="how">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span>How it works</span></span>
+      <h2>From <em>“hi”</em> to <em>“finally”</em> in three simple steps</h2>
+      <p>We removed the games. Naiflick keeps things simple, safe and genuinely Kenyan.</p>
+    </div>
+
+    <div class="steps">
+      <article class="step reveal" style="--g:linear-gradient(120deg,#ff2d78,#ff8a3d);--gs:rgba(255,45,120,.65)">
+        <div class="step-num">01</div>
+        <h3>Build your profile</h3>
+        <p>Add a few photos, your interests and what you're actually looking for. It takes under two minutes — and you can verify your ID for a blue tick.</p>
+      </article>
+
+      <article class="step reveal" style="--g:linear-gradient(120deg,#7b2ff7,#ff2d78);--gs:rgba(123,47,247,.65);transition-delay:.12s">
+        <div class="step-num">02</div>
+        <h3>Swipe &amp; match</h3>
+        <p>Our smart matching looks at your location, values and lifestyle. You'll see people nearby in Nairobi, Mombasa, Kisumu, Nakuru and everywhere in between.</p>
+      </article>
+
+      <article class="step reveal" style="--g:linear-gradient(120deg,#00c9a7,#3b82f6);--gs:rgba(0,201,167,.65);transition-delay:.24s">
+        <div class="step-num">03</div>
+        <h3>Chat &amp; meet up</h3>
+        <p>When you both like each other, the chat opens. Talk, plan a coffee date at Java, a walk at Karura — and take it from there.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MULTICOLOR TABS / MATCHES ================= -->
+<section class="section" id="matches" style="background:linear-gradient(180deg,#fffaf8,#fff4f7 40%,#fffaf8)">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span>Real people, real places</span></span>
+      <h2>Singles near you, <em>right now</em></h2>
+      <p>Browse a taste of who's on Naiflick. Tap a city to see who's active today.</p>
+    </div>
+
+    <div class="tabs-wrap reveal">
+      <div class="tabs" role="tablist" aria-label="Cities">
+        <button class="tab" role="tab" aria-selected="true" data-tab="nairobi" style="--c1:#ff2d78;--c2:#ff8a3d">Nairobi</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="mombasa" style="--c1:#00c9a7;--c2:#3b82f6">Mombasa</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="kisumu" style="--c1:#7b2ff7;--c2:#ff2d78">Kisumu</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="nakuru" style="--c1:#ff8a3d;--c2:#ffc23d">Nakuru</button>
+      </div>
+    </div>
+
+    <div class="panels">
+
+      <!-- NAIROBI -->
+      <div class="panel active" id="panel-nairobi" role="tabpanel">
+        <article class="match-card">
+          <div class="mc-media" style="--g1:#ff2d78;--g2:#ff8a3d">
+            <span class="mc-initial">W</span>
+            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=600&q=75" alt="Wanjiru" loading="lazy" onerror="this.remove()">
+            <span class="mc-badge">98% match</span><span class="mc-online"></span>
+          </div>
+          <div class="mc-body">
+            <h4>Wanjiru, 26</h4>
+            <p>📍 Kilimani, Nairobi</p>
+            <div class="mc-tags"><span>Hiking</span><span>Coffee</span></div>
+          </div>
+        </article>
+
+        <article class="match-card">
+          <div class="mc-media" style="--g1:#7b2ff7;--g2:#ff2d78">
+            <span class="mc-initial">B</span>
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=75" alt="Brian" loading="lazy" onerror="this.remove()">
+            <span class="mc-badge">94% match</span><span class="mc-online"></span>
+          </div>
+          <div class="mc-body">
+            <h4>Brian, 29</h4>
+            <p>📍 Westlands, Nairobi</p>
+            <div class="mc-tags"><span>Football</span><span>Tech</span></div>
+          </div>
+        </article>
+
+        <article class="match-card">
+          <div class="mc-media" style="--g1:#00c9a7;--g2:#3b82f6">
+            <span class="mc-initial">A</span>
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=75" alt="Achieng" loading="lazy" onerror="this.remove()">
+            <span class="mc-badge">91% match</span>
+          </div>
+          <div class="mc-body">
+            <h4>Achieng, 24</h4>
+            <p>📍 Kileleshwa, Nairobi</p>
+            <div class="mc-tags"><span>Art</span><span>Live music</span></div>
+          </div>
+        </article>
+
+        <article class="match-card">
+          <div class="mc-media" style="--g1:#ff8a3d;--g2:#ffc23d">
+            <span class="mc-initial">K</span>
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=75" alt="Kevin" loading="lazy" onerror="this.remove()">
+            <span class="mc-badge">89% match</span><span class="mc-online"></span>
+          </div>
+          <div class="mc-body">
+            <h4>Kevin, 31</h4>
+            <p>📍 Karen, Nairobi</p>
+            <div class="mc-tags"><span>Road trips</span><span>Nyama choma</span></div>
+          </div>
+        </article>
+      </div>
+
+      <!-- MOMBASA -->
+      <div class="panel" id="panel-mombasa" role="tabpanel">
+        <article class="match-card">
+          <div class="mc-media" style="--g1:#00c9a7;--g2:#3b82f6">
+            <span class="mc-initial">Z</span>
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=75" alt="Zawadi" loading="lazy" onerror="this.remove()">
+            <span class="mc-badge">97% match</span><span class="mc-online"></span>
+          </div>
+          <div class="mc-body">
+            <h4>Zawadi, 27</h4>
+            <p>📍 Nyali, Mombasa</p>
+            <div class="mc-tags"><span>Beach days</span><span>Swahili food</span></div>
+          </div>
+        </article>
+
+        <article class="match-card">
+          <div class="mc-media" style="--g1:#ff2d78;--g2:#ff8a3d">
+            <span class="mc-initial">H</span>
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=75" alt="Hassan" loading="lazy" onerror="this.remove()">
+            <span class="mc-badge">93% match</span>
+          </div>
+          <div class="mc-body">
+            <h4>Hassan, 30</h4>
+            <p>📍 Bamburi, Mombasa</p>
+            <div class="mc-tags"><span>Diving</span><span>Fitness</span></div>
+          </div>
+        </article>
+
+        <article class="match-card">
+          <div class="mc-media" style="--g1:#7b2ff7;--g2:#a855f7">
+            <span class="mc-initial">M</span>
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=75" alt="Mariam" loading="lazy" onerror="this.remove()">
+            <span class="mc-badge">90% match</span><span class="mc-online"></span>
+          </div>
+          <div class="mc-body">
+            <h4>Mariam, 25</h4>
+            <p>📍 Likoni, Mombasa</p>
+            <div class="mc-tags"><span>Reading</span><span>Travel</span></div>
+          </div>
+        </article>
+
+        <article class="match-card">
+          <div class="mc-media" style="--g1:#ffc23d;--g2:#ff8a3d">
+            <span class="mc-initial">S</span>
+            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=75" alt="Salim" loading="lazy" onerror="this.remove()">
+            <span class="mc-badge">88% match</span>
+          </div>
+          <div class="mc-body">
+            <h4>Salim, 28</h4>
+            <p>📍 Diani, Kwale</p>
+            <div class="mc-tags"><span>Music</span><span>Surfing</span></div>
+          </div>
+        </article>
+      </div>
+
+      <!-- KISUMU -->
+      <div class="panel" id="panel-kisumu" role="tabpanel">
+        <article class="match-card">
+          <div class="mc-media" style="--g1:#7b2ff7;--g2:#ff2d78">
+            <span class="mc-initial">A</span>
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=75" alt="Akinyi" loading="lazy" onerror="this.remove()">
+            <span class="mc-badge">96% match</span><span class="mc-online"></span>
+          </div>
+          <div class="mc-body">
+            <h4>Akinyi, 26</h4>
+            <p>📍 Milimani, Kisumu</p>
+            <div class="mc-tags"><span>Lakeside</span><span>Poetry</span></div>
+          </div>
+        </article>
+
+        <article class="match-card">
+          <div class="mc-media" style="--g1:#00c9a7;--g2:#3b82f6">
+            <span class="mc-initial">O</span>
+            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=75" alt="Otieno" loading="lazy" onerror="this.remove()">
+            <span class="mc-badge">92% match</span>
+          </div>
+          <div class="mc-body">
+            <h4>Otieno, 32</h4>
+            <p>📍 Nyalenda, Kisumu</p>
+            <div class="mc-tags"><span>Fishing</span><span>Cooking</span></div>
+          </div>
+        </article>
+
+        <article class="match-card">
+          <div class="mc-media" style="--g1:#ff2d78;--g2:#ffc23d">
+            <span class="mc-initial">N</span>
+            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=75" alt="Nyambura" loading="lazy" onerror="this.remove()">
+            <span class="mc-badge">89% match</span><span class="mc-online"></span>
+          </div>
+          <div class="mc-body">
+            <h4>Nyambura, 28</h4>
+            <p>📍 Mamboleo, Kisumu</p>
+            <div class="mc-tags"><span>Church</span><span>Baking</span></div>
+          </div>
+        </article>
+
+        <article class="match-card">
+          <div class="mc-media" style="--g1:#ff8a3d;--g2:#ff2d78">
+            <span class="mc-initial">D</span>
+            <img src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&w=600&q=75" alt="Dennis" loading="lazy" onerror="this.remove()">
+            <span class="mc-badge">86% match</span>
+          </div>
+          <div class="mc-body">
+            <h4>Dennis, 29</h4>
+            <p>📍 Kondele, Kisumu</p>
+            <div class="mc-tags"><span>Basketball</span><span>Movies</span></div>
+          </div>
+        </article>
+      </div>
+
+      <!-- NAKURU -->
+      <div class="panel" id="panel-nakuru" role="tabpanel">
+        <article class="match-card">
+          <div class="mc-media" style="--g1:#ff8a3d;--g2:#ffc23d">
+            <span class="mc-initial">C</span>
+            <img src="https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?auto=format&fit=crop&w=600&q=75" alt="Chebet" loading="lazy" onerror="this.remove()">
+            <span class="mc-badge">95% match</span><span class="mc-online"></span>
+          </div>
+          <div class="mc-body">
+            <h4>Chebet, 25</h4>
+            <p>📍 Milimani, Nakuru</p>
+            <div class="mc-tags"><span>Running</span><span>Road trips</span></div>
+          </div>
+        </article>
+
+        <article class="match-card">
+          <div class="mc-media" style="--g1:#3b82f6;--g2:#7b2ff7">
+            <span class="mc-initial">P</span>
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=75" alt="Peter" loading="lazy" onerror="this.remove()">
+            <span class="mc-badge">91% match</span>
+          </div>
+          <div class="mc-body">
+            <h4>Peter, 33</h4>
+            <p>📍 Kiamunyi, Nakuru</p>
+            <div class="mc-tags"><span>Farming</span><span>Grilling</span></div>
+          </div>
+        </article>
+
+        <article class="match-card">
+          <div class="mc-media" style="--g1:#ff2d78;--g2:#7b2ff7">
+            <span class="mc-initial">S</span>
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=75" alt="Sharon" loading="lazy" onerror="this.remove()">
+            <span class="mc-badge">90% match</span><span class="mc-online"></span>
+          </div>
+          <div class="mc-body">
+            <h4>Sharon, 27</h4>
+            <p>📍 Section 58, Nakuru</p>
+            <div class="mc-tags"><span>Photography</span><span>Dogs</span></div>
+          </div>
+        </article>
+
+        <article class="match-card">
+          <div class="mc-media" style="--g1:#00c9a7;--g2:#00e6a8">
+            <span class="mc-initial">J</span>
+            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=75" alt="James" loading="lazy" onerror="this.remove()">
+            <span class="mc-badge">87% match</span>
+          </div>
+          <div class="mc-body">
+            <h4>James, 30</h4>
+            <p>📍 Naivasha Road, Nakuru</p>
+            <div class="mc-tags"><span>Cycling</span><span>Tech</span></div>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY / FEATURES ================= -->
+<section class="section" id="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span>Why Naiflick</span></span>
+      <h2>Built for Kenyan singles, <em>not copied from abroad</em></h2>
+      <p>Everything here is designed around how we actually date — matatus, church, family and all.</p>
+    </div>
+
+    <div class="features">
+      <article class="feature reveal" style="--g:linear-gradient(120deg,#ff2d78,#ff8a3d);--gs:rgba(255,45,120,.7)">
+        <div class="f-icon">🛡️</div>
+        <h3>Verified &amp; safe</h3>
+        <p>Every profile goes through photo and ID verification. Report or block anyone in one tap — our Nairobi-based safety team reviews 24/7.</p>
+      </article>
+
+      <article class="feature reveal" style="--g:linear-gradient(120deg,#7b2ff7,#ff2d78);--gs:rgba(123,47,247,.7);transition-delay:.08s">
+        <div class="f-icon">📍</div>
+        <h3>Truly local matching</h3>
+        <p>Filter by estate, town or county. Find someone in Westlands, Nyali, Milimani or your own neighbourhood in Nakuru.</p>
+      </article>
+
+      <article class="feature reveal" style="--g:linear-gradient(120deg,#00c9a7,#3b82f6);--gs:rgba(0,201,167,.7);transition-delay:.16s">
+        <div class="f-icon">💬</div>
+        <h3>Chat that leads to dates</h3>
+        <p>Icebreaker prompts, voice notes and date ideas for your city. We nudge you to actually meet — not chat forever.</p>
+      </article>
+
+      <article class="feature reveal" style="--g:linear-gradient(120deg,#ff8a3d,#ffc23d);--gs:rgba(255,138,61,.7);transition-delay:.08s">
+        <div class="f-icon">🎯</div>
+        <h3>Date ideas near you</h3>
+        <p>Stuck on where to go? We suggest real spots for first dates — coffee in Westlands, sundowners in Nyali, lakeside walks in Kisumu.</p>
+      </article>
+
+      <article class="feature reveal" style="--g:linear-gradient(120deg,#3b82f6,#7b2ff7);--gs:rgba(59,130,246,.7);transition-delay:.16s">
+        <div class="f-icon">🎉</div>
+        <h3>Naiflick Nights</h3>
+        <p>Monthly singles mixers in Nairobi, Mombasa and Kisumu. Come through for real conversations, great music and zero pressure — open to all members.</p>
+      </article>
+
+      <article class="feature reveal" style="--g:linear-gradient(120deg,#ff2d78,#7b2ff7);--gs:rgba(255,45,120,.7);transition-delay:.24s">
+        <div class="f-icon">✨</div>
+        <h3>Smart daily picks</h3>
+        <p>Our matching engine learns your type and sends you 5 hand-picked profiles every morning at 7am. Quality over quantity.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STORIES ================= -->
+<section class="section" id="stories" style="background:linear-gradient(180deg,#fffaf8,#fff5f8 45%,#fffaf8)">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span>Success stories</span></span>
+      <h2>They found each other on <em>Naiflick</em></h2>
+      <p>Over 18,600 matches and counting. Here are a few of our favourites.</p>
+    </div>
+
+    <div class="stories">
+      <article class="story reveal">
+        <div class="story-img" style="--g1:#ff2d78;--g2:#ff8a3d">
+          <img src="https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?auto=format&fit=crop&w=800&q=75" alt="Couple" loading="lazy" onerror="this.remove()">
+        </div>
+        <div class="story-body">
+          <div class="story-stars">★★★★★</div>
+          <blockquote>“We matched on a Tuesday and met at a coffee shop in Westlands on Saturday. Two years later, we're planning the wedding. Naiflick, asanteni sana.”</blockquote>
+          <div class="story-meta">
+            <div class="av">W<img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=120&q=70" alt="" onerror="this.remove()"></div>
+            <div>
+              <h5>Wanjiru &amp; Brian</h5>
+              <small>Nairobi · Together 2 years</small>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="story reveal" style="transition-delay:.12s">
+        <div class="story-img" style="--g1:#00c9a7;--g2:#3b82f6">
+          <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=75" alt="Couple" loading="lazy" onerror="this.remove()">
+        </div>
+        <div class="story-body">
+          <div class="story-stars">★★★★★</div>
+          <blockquote>“I'd almost given up on dating apps. Naiflick felt different — people actually reply, and they actually show up. Best decision of my year.”</blockquote>
+          <div class="story-meta">
+            <div class="av" style="background:linear-gradient(120deg,#00c9a7,#3b82f6)">Z<img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=120&q=70" alt="" onerror="this.remove()"></div>
+            <div>
+              <h5>Zawadi &amp; Hassan</h5>
+              <small>Mombasa · Together 11 months</small>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="story reveal" style="transition-delay:.24s">
+        <div class="story-img" style="--g1:#7b2ff7;--g2:#ff2d78">
+          <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=75" alt="Couple" loading="lazy" onerror="this.remove()">
+        </div>
+        <div class="story-body">
+          <div class="story-stars">★★★★★</div>
+          <blockquote>“Long distance from Kisumu to Nakuru sounded impossible. But we made it work, and now we live together. The daily picks found my person.”</blockquote>
+          <div class="story-meta">
+            <div class="av" style="background:linear-gradient(120deg,#7b2ff7,#ff2d78)">C<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=70" alt="" onerror="this.remove()"></div>
+            <div>
+              <h5>Chebet &amp; Peter</h5>
+              <small>Nakuru · Together 1 year</small>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section" id="faq" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span>Questions</span></span>
+      <h2>Everything you <em>wanted to ask</em></h2>
+    </div>
+
+    <div class="faq">
+      <details class="faq-item reveal">
+        <summary>Is Naiflick really free to use?</summary>
+        <div class="faq-body">Yes — completely. Creating a profile, browsing, matching and chatting with your matches costs nothing. There are no hidden fees, no paywalls and no subscriptions. Naiflick is built to be accessible to every Kenyan.</div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>Is my personal information safe?</summary>
+        <div class="faq-body">Absolutely. We never share your data with third parties, and your exact location is never shown to other members — only an approximate distance. You control what you share and can hide your profile at any time.</div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>How do you verify profiles?</summary>
+        <div class="faq-body">Every new member can complete a photo verification (a quick selfie pose match) and an optional national ID check. Verified profiles get a blue tick and are 3x more likely to get matches.</div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>Does Naiflick work outside Nairobi?</summary>
+        <div class="faq-body">Definitely. We have active members in all 47 counties, with the largest communities in Nairobi, Mombasa, Kisumu, Nakuru, Eldoret and Thika. You can filter by town or county to find people nearby.</div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>How do I stay safe when meeting someone?</summary>
+        <div class="faq-body">Always meet in a public place for the first few dates, tell a friend or family member where you're going, and keep your own transport arrangements. Our Safety Centre has more tips — and you can report or block anyone from their profile in one tap.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BAND ================= -->
+<section class="container" id="join">
+  <div class="cta-band reveal">
+    <div class="inner">
+      <h2>Your person is already on Naiflick.</h2>
+      <p>Join free today and start meeting real people in your city tonight. It takes less than two minutes — and it might change everything.</p>
+
+      <div class="cta-actions">
+        <a href="#" class="btn btn-hot">
+          Create Free Account
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.54c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.9-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.65 3.24 2.6 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.28-1.27 3.13-2.53.99-1.45 1.4-2.85 1.42-2.92-.03-.01-2.72-1.04-2.75-4.12zM14.6 4.6c.71-.86 1.19-2.06 1.06-3.25-1.02.04-2.26.68-2.99 1.54-.66.76-1.23 1.98-1.08 3.14 1.14.09 2.3-.58 3.01-1.43z"/></svg>
+          <span><small>Download on the</small><b>App Store</b></span>
+        </a>
+        <a href="#" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.3c-.3.3-.5.8-.5 1.4v16.6c0 .6.2 1.1.5 1.4l.1.1 9.3-9.3v-.2L3.6 2.3zm12 12.3l-3.1-3.1v-.2l3.1-3.1.1.1 3.7 2.1c1 .6 1 1.6 0 2.2l-3.7 2.1-.1-.1zm-.9.9L11.4 12l-7.1 7.1c.3.4.9.4 1.5.1l8.9-5.1zM4.3 2.8l7.1 7.1 3.3-3.3-8.9-5.1c-.6-.3-1.2-.3-1.5.1z"/></svg>
+          <span><small>Get it on</small><b>Google Play</b></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="logo">
+          <span class="logo-mark">
+            <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.9-9.6-9.2C.6 8.3 2.5 4.6 6.1 4.1c2.2-.3 4.1.8 5.9 3 1.8-2.2 3.7-3.3 5.9-3 3.6.5 5.5 4.2 3.7 7.7C19.5 16.1 12 21 12 21z"/></svg>
+          </span>
+          <span style="background:linear-gradient(120deg,#ff2d78,#ff8a3d);-webkit-background-clip:text;background-clip:text;color:transparent">Naiflick</span>
+        </a>
+        <p>Kenya's homegrown dating app. Built in Nairobi, made for Kenyans — serious about love, safe by design, and free to use.</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.3 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .3-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.3-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.3 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.2.8-.4.4-.6.7-.8 1.2-.2.4-.3 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.2.4.4.7.6 1.2.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.2-.8.4-.4.6-.7.8-1.2.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.2-.4-.4-.7-.6-1.2-.8-.4-.2-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.1a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 8.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.4-8.4a1.2 1.2 0 1 1-2.3 0 1.2 1.2 0 0 1 2.3 0z"/></svg></a>
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.2 22H1.9l7.7-8.8L1 2h6.8l4.7 6.2L18.2 2zm-1.2 18h1.8L7.1 3.9H5.1L17 20z"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.6 5.8a5.4 5.4 0 0 1-3.2-3.6V2h-3.1v13.2a2.7 2.7 0 1 1-2.7-2.7c.3 0 .5 0 .7.1V9.4a5.9 5.9 0 1 0 5.1 5.8V8.7a8.4 8.4 0 0 0 4.5 1.4V7a5.4 5.4 0 0 1-1.3-.2z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="f-col">
+        <h5>Naiflick</h5>
+        <a href="#how">How it works</a>
+        <a href="#matches">Browse matches</a>
+        <a href="#why">Safety &amp; verification</a>
+        <a href="#why">Community events</a>
+        <a href="#stories">Success stories</a>
+      </div>
+
+      <div class="f-col">
+        <h5>Support</h5>
+        <a href="#faq">Help centre</a>
+        <a href="#">Report a profile</a>
+        <a href="#">Safety tips</a>
+        <a href="#">Community guidelines</a>
+        <a href="#">Contact us</a>
+      </div>
+
+      <div class="f-col">
+        <h5>Legal</h5>
+        <a href="#">Terms of service</a>
+        <a href="#">Privacy policy</a>
+        <a href="#">Cookie policy</a>
+        <a href="#">Safety centre</a>
+        <a href="#">Careers</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 Naiflick. All rights reserved. Made with <span style="color:#ff2d78">♥</span> in Nairobi, Kenya.</span>
+      <span class="made">🇰🇪 Proudly Kenyan · Free to join · 18+ only</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   1. HEADER SCROLL STATE
+============================================================ */
+const header = document.getElementById('header');
+const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 24);
+onScroll();
+window.addEventListener('scroll', onScroll, {passive:true});
+
+/* ============================================================
+   2. MOBILE MENU
+============================================================ */
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+}));
+
+/* ============================================================
+   3. SCROLL REVEAL
+============================================================ */
+const revealEls = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.12, rootMargin: '0px 0px -60px 0px'});
+  revealEls.forEach(el => io.observe(el));
+} else {
+  revealEls.forEach(el => el.classList.add('in'));
+}
+
+/* ============================================================
+   4. ANIMATED COUNTERS
+============================================================ */
+function animateCount(el) {
+  const target = parseFloat(el.dataset.count);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1800;
+  const start = performance.now();
+
+  function frame(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const value = target * eased;
+    let display;
+    if (target >= 1000) display = Math.round(value).toLocaleString('en-KE');
+    else display = Math.round(value);
+    el.textContent = display + suffix;
+    if (p < 1) requestAnimationFrame(frame);
+    else el.textContent = (target >= 1000 ? target.toLocaleString('en-KE') : target) + suffix;
+  }
+  requestAnimationFrame(frame);
+}
+
+const counters = document.querySelectorAll('[data-count]');
+if ('IntersectionObserver' in window) {
+  const cio = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { animateCount(e.target); cio.unobserve(e.target); }
+    });
+  }, {threshold: 0.5});
+  counters.forEach(c => cio.observe(c));
+} else {
+  counters.forEach(c => c.textContent = c.dataset.count + (c.dataset.suffix || ''));
+}
+
+/* ============================================================
+   5. FLOATING HEARTS
+============================================================ */
+(function hearts() {
+  const box = document.getElementById('hearts');
+  if (!box || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const glyphs = ['♥','💖','💘','❤','💕','✨'];
+  const colors = ['#ff2d78','#ff8a3d','#7b2ff7','#00c9a7','#ffc23d'];
+  const count = window.innerWidth < 700 ? 9 : 16;
+  for (let i = 0; i < count; i++) {
+    const s = document.createElement('span');
+    s.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+    s.style.left = Math.random() * 100 + '%';
+    s.style.fontSize = (12 + Math.random() * 20) + 'px';
+    s.style.color = colors[Math.floor(Math.random() * colors.length)];
+    s.style.animationDuration = (11 + Math.random() * 12) + 's';
+    s.style.animationDelay = (Math.random() * 14) + 's';
+    box.appendChild(s);
+  }
+})();
+
+/* ============================================================
+   6. PROFILE CARD DECK
+============================================================ */
+const DECK = [
+  {n:'Wanjiru', a:26, l:'Kilimani, Nairobi', m:98, t:['Hiking','Coffee'],
+   img:'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=600&q=75', g:['#ff2d78','#ff8a3d']},
+  {n:'Brian', a:29, l:'Westlands, Nairobi', m:94, t:['Football','Tech'],
+   img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=75', g:['#7b2ff7','#ff2d78']},
+  {n:'Zawadi', a:27, l:'Nyali, Mombasa', m:97, t:['Beach','Swahili food'],
+   img:'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=75', g:['#00c9a7','#3b82f6']},
+  {n:'Kevin', a:31, l:'Karen, Nairobi', m:89, t:['Road trips','Nyama choma'],
+   img:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=75', g:['#ff8a3d','#ffc23d']},
+  {n:'Achieng', a:24, l:'Kileleshwa, Nairobi', m:91, t:['Art','Live music'],
+   img:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=75', g:['#3b82f6','#7b2ff7']}
+];
+
+const deckEl = document.getElementById('deck');
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function cardHTML(p) {
+  return `
+    <div class="pc-media" style="background:linear-gradient(140deg,${p.g[0]},${p.g[1]})">
+      <span class="pc-initial">${p.n.charAt(0)}</span>
+      <img src="${p.img}" alt="${p.n}" loading="lazy" onerror="this.remove()">
+    </div>
+    <div class="pc-info">
+      <div class="pc-match">${p.m}% match</div>
+      <h4>${p.n}, ${p.a}</h4>
+      <p>📍 ${p.l}</p>
+      <div class="pc-tags">${p.t.map(t => `<span>${t}</span>`).join('')}</div>
+    </div>`;
+}
+
+if (deckEl) {
+  const els = [0,1,2].map(k => {
+    const d = document.createElement('div');
+    d.className = 'pcard pos-' + k;
+    deckEl.appendChild(d);
+    return d;
+  });
+
+  let posEls = els.slice();
+  let offset = 0;
+  const P = DECK;
+
+  posEls.forEach((el, k) => { el.innerHTML = cardHTML(P[(offset + k) % P.length]); });
+
+  let busy = false;
+
+  function tick() {
+    if (busy || document.hidden) return;
+    busy = true;
+
+    const front = posEls[0];
+    front.classList.add('fly');
+
+    setTimeout(() => {
+      offset = (offset + 1) % P.length;
+
+      // rotate element positions: [front, mid, back] -> [mid, back, front]
+      posEls = [posEls[1], posEls[2], posEls[0]];
+      const back = posEls[2];
+
+      // snap the flown card back to the back position with new content, no transition
+      back.style.transition = 'none';
+      back.innerHTML = cardHTML(P[(offset + 2) % P.length]);
+      back.className = 'pcard pos-2';
+      void back.offsetWidth;
+      back.style.transition = '';
+
+      // smoothly promote the other two
+      posEls[0].className = 'pcard pos-0';
+      posEls[1].className = 'pcard pos-1';
+
+      busy = false;
+    }, 560);
+  }
+
+  if (!reduced) {
+    setInterval(tick, 3400);
+  }
+}
+
+/* ============================================================
+   7. MULTICOLOR TABS
+============================================================ */
+const tabs = document.querySelectorAll('.tab');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+    tab.setAttribute('aria-selected', 'true');
+
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('panel-' + tab.dataset.tab);
+    if (target) {
+      // force reflow so the entrance animation replays
+      void target.offsetWidth;
+      target.classList.add('active');
+    }
+  });
+});
+
+/* ============================================================
+   8. FAQ — only one open at a time
+============================================================ */
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.addEventListener('toggle', () => {
+    if (item.open) {
+      document.querySelectorAll('.faq-item').forEach(other => {
+        if (other !== item) other.open = false;
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>
+```
